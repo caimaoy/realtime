@@ -1,0 +1,19 @@
+language: python
+
+python:
+  - '2.7'
+  - '3.4'
+  - '3.5'
+  - '3.6'
+
+install:
+  - pip install .
+  - pip install tox-travis
+  - pip install coveralls pytest-cov
+
+script:
+  - tox
+  - python -m pytest --verbose --cov-report html:cov.html --cov=realtime tests/
+
+after_success:
+  - coveralls
